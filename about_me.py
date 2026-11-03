@@ -1,6 +1,7 @@
 # This program gives details about me and my interests
 name = "Rishi"
 school = "PFW"
+city = "Fort Wayne"
 goal = "build an automation system using AI"
 
 print("My name is", name)
