@@ -2,24 +2,28 @@ def cleanup(text):
     word = text.replace("!", "").replace(",","").replace(".","").replace("?","")
     return word.lower().split()
     
-def words(text):
+def words_total(text):
     return len(text)
 
 def unique(text):
     return set(text)
 
+
+def word_counts(words):
+    counts = {}
+    for word in words:
+        if word in counts:
+            counts[word] += 1
+        else:
+            counts[word] = 1
+    return counts
+
+
 def count_words(text):
     if len(text) == 0:
         return "", 0
 
-    counts = {}
-
-    for i in text:
-        if i in counts:
-            counts[i] += 1
-        else:
-            counts[i] = 1
-
+    counts = word_counts(text)
     counted = 0
     for x in counts:
         if counts[x] > counted:
@@ -49,13 +53,7 @@ def average(text):
         return letters / word_num
 
 def once(text):
-    counts = {}
-
-    for i in text:
-        if i in counts:
-            counts[i] += 1
-        else:
-            counts[i] = 1
+    counts = word_counts(text)
 
     once_only = []
     for x in text:
@@ -72,7 +70,7 @@ def main(text):
     else:
         print()
         print("=== Text Analysis===")
-        print(f"Words: {words(cleaned)}")
+        print(f"Words: {words_total(cleaned)}")
         print(f"Unique words: {len((unique(cleaned)))}")
         word, count = count_words(cleaned)
         print(f"Most common: {word} ({count} times)" )
